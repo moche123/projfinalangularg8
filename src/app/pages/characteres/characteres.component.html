@@ -1,0 +1,17 @@
+
+<div class="container-characters">
+    <!-- DIRECTIVA NGFOR -->
+    <!-- BEM -->
+    <section class="container-characters__item" *ngFor="let character of (characteres$ | async)">
+        <p class="container-characters__item__character-name">
+            
+            {{ character.name.length<=12 ? character.name : (character.name | slice:0:12)+'...' }}
+        
+        </p>
+
+        <img class="container-characters__item__img" [src]="character.image" alt="">
+
+        <button class="container-characters__item__button" (click)="addFavorite(character)">ADD TO FAVORITES</button>
+       
+    </section>
+</div>

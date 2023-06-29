@@ -1,0 +1,38 @@
+.flex-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
+    background-color: rgb(108, 108, 252);
+
+    &__routes{
+        display: flex;
+        justify-content: space-between;
+
+        p{
+            margin-left: 1rem;
+            background-color: aqua;
+            padding: 0.5rem;
+            border-radius: 8px;
+        }
+
+        p:hover{
+            cursor: pointer;
+        }
+    };
+
+
+    &__btn-close-session{
+        font-family: 'Montserrat', sans-serif;
+        width: auto;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        color: #fff; /*Color de la letra*/
+        font-size: 19px;
+        background-color: #9b16a2;
+        cursor: pointer;
+    }
+}
