@@ -2,16 +2,17 @@
 <div class="container-characters">
     <!-- DIRECTIVA NGFOR -->
     <!-- BEM -->
-    <section class="container-characters__item" *ngFor="let character of (characteres$ | async)">
+    <section class="container-characters__item" *ngFor="let character of favorites">
         <p class="container-characters__item__character-name">
             
-            {{ character.name.length<=12 ? character.name : (character.name | slice:0:12)+'...' }}
+            {{ character.nameCharacter.length<=12 ? character.nameCharacter : (character.nameCharacter | slice:0:12)+'...' }}
         
         </p>
 
-        <img class="container-characters__item__img" [src]="character.image" alt="">
+        <img class="container-characters__item__img" [src]="character.caracterUrlImagen" alt="">
 
-        <button class="container-characters__item__button" >REMOVE FAVORITE</button>
+        <button class="container-characters__item__button" (click)="removeFavorite(character)">Remove favorite</button>
        
     </section>
 </div>
+

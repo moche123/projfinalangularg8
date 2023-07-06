@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,6 +21,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private _router: Router,
+    private _authService: AuthService
+
   ) { }
 
   ngOnInit(): void {
@@ -33,10 +36,59 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     const { name, email, password } = this.myForm.value;
 
+    this._authService.register(name, email, password, 1, true)
+      .subscribe(result => {
+        // console.log(result);
+        if (result === true) {
+          this._router.navigateByUrl('/pages')
+        } else {
 
-  if(email && name && password){
-      this._router.navigateByUrl('/auth/login')
-    }
+          //TODO: mostrar message de error
+          //valida los errores (validaciones) desde la base de datos
+
+          if (result.msg) {
+            setTimeout(() => {
+              this.message.push(result.msg);
+            }, 300);
+
+            setTimeout(() => {
+              this.message = [];
+            }, 3100)
+          }
+
+          if (result.errors?.name) {
+            setTimeout(() => {
+              this.message.push(result.errors.name.msg);
+            }, 300);
+
+            setTimeout(() => {
+              this.message = [];
+            }, 3100)
+          }
+          if (result.errors?.email) {
+            setTimeout(() => {
+              this.message.push(result.errors.email.msg);
+            }, 300);
+
+            setTimeout(() => {
+              this.message = [];
+            }, 3100)
+          }
+
+          if (result.errors?.password) {
+            setTimeout(() => {
+              this.message.push(result.errors.password.msg);
+            }, 300);
+
+            setTimeout(() => {
+              this.message = [];
+            }, 3100)
+          }
+
+        }
+      })
+
+
 
   }
 

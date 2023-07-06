@@ -22,9 +22,23 @@ export class CharacteresComponent implements OnInit {
     this.characteres$ = this._apiService.getCharacters()
   }
 
-  addFavorite(character:any){
-    this._router.navigateByUrl('/pages/favorites')
-  }
+  addFavorite(character:Character){
+    let body = {
+      IdCharacter: character.id,
+      IdUser: localStorage.getItem('userId'),
+      nameCharacter: character.name,
+      caracterUrlImagen: character.image,
+      token: localStorage.getItem('token')
+    }
+
+    this._apiService.addFavorite(body).subscribe(ok => {
+      console.log(ok)
+
+      if(ok !== false && typeof(ok) === 'boolean' ){
+        this._router.navigateByUrl('/pages/favorites');
+      }
+    })
+}
 
 
 }
