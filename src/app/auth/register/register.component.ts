@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent  {
 
   myForm: FormGroup = this._fb.group({
     name: ['usuario', [Validators.required, Validators.minLength(6)]],
@@ -25,8 +25,6 @@ export class RegisterComponent implements OnInit {
 
   ) { }
 
-  ngOnInit(): void {
-  }
 
   fieldIsValid(field: string) {
     return this.myForm.controls[field].errors
