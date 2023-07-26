@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { CharacteresComponent } from './characteres/characteres.component';
 import { FavoritesComponent } from './favorites/favorites.component';
-import { pagesGuard } from '../guards/pages.guard';
+import { PagesGuard } from '../guards/pages.guard';
 
 const routes: Routes = [
   {
@@ -18,12 +18,12 @@ const routes: Routes = [
       {
         path: 'characters',
         component: CharacteresComponent,
-        canActivate: [pagesGuard()]
+        canActivate: [PagesGuard]
       },
       {
         path: 'favorites',
         component: FavoritesComponent,
-        canActivate: [pagesGuard()]
+        canActivate: [PagesGuard]
       }
     ]
 

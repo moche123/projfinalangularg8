@@ -1,22 +1,19 @@
-import { CanActivateFn } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { inject } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
-export function  authGuard(): CanActivateFn {
+@Injectable()
+export class AuthGuard implements CanActivate {
+  constructor(private injector: Injector) {}
 
-   //! SI NO ESTA LOGUEADO; SI PUEDES ENTRAR AL LOGIN
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const oauthService: AuthService = this.injector.get(AuthService);
 
-    //! CASO: (TRUE)SI ESTOY LOGUEADO --> NO TE DEJO ENTRAR AL LOGIN, MANDAME A PERSONAJES
-    //! CASO: (FALSE)NO ESTOY LOGUEADO --> TE DEJO ENTRAR AL LOGIN
-
-    
-  return () => {
-    const oauthService: AuthService = inject(AuthService);
-    
-    if (!oauthService.isLoggedIn() ) {
+    if (!oauthService.isLoggedIn()) {
       return true;
     }
+    
     oauthService.goToPages();
     return false;
-  };
-};
+  }
+}
