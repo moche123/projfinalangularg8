@@ -9,7 +9,6 @@ export class PagesGuard {
   constructor(private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log(this.authService.isLoggedIn());
     if (this.authService.isLoggedIn()) {
       return true;
     }

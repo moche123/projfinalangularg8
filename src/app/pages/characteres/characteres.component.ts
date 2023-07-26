@@ -23,7 +23,7 @@ export class CharacteresComponent implements OnInit {
   }
 
   addFavorite(character:Character){
-    let body = {
+    const body = {
       IdCharacter: character.id,
       IdUser: localStorage.getItem('userId'),
       nameCharacter: character.name,
@@ -32,7 +32,6 @@ export class CharacteresComponent implements OnInit {
     }
 
     this._apiService.addFavorite(body).subscribe(ok => {
-      console.log(ok)
 
       if(ok !== false && typeof(ok) === 'boolean' ){
         this._router.navigateByUrl('/pages/favorites');

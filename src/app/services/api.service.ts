@@ -49,7 +49,6 @@ export class ApiService {
 
     return this._http.post<any>(url, body)
       .pipe(
-        tap(res => console.log(res)),
         map(resp => resp.ok),
         catchError(err => {
           // alert(err.error.msg)
@@ -58,7 +57,6 @@ export class ApiService {
             err.error.msg,
             'error'
           )
-          console.log(err.error)
           return of(err.error)
         })
       )

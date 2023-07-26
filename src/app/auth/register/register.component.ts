@@ -36,7 +36,6 @@ export class RegisterComponent  {
 
     this._authService.register(name, email, password, 1, true)
       .subscribe(result => {
-        // console.log(result);
         if (result === true) {
           this._router.navigateByUrl('/pages')
         } else {
