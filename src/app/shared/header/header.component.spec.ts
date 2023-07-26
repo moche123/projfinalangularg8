@@ -1,18 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { HeaderComponent } from './header.component';
+import { Router } from '@angular/router';
+
+const mockRouter = jasmine.createSpyObj<Router>('Router', ['navigateByUrl']);
+
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HeaderComponent]
-    });
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    component = new HeaderComponent(
+      <Router>(<unknown> typeof mockRouter)
+    )
   });
 
   it('should create', () => {
